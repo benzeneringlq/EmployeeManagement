@@ -5,4 +5,8 @@ public class Position {
     String name;
     String type;
     int establishmentQuantity;
+
+    public String getID() {
+        return String.valueOf(positionID);
+    }
 }

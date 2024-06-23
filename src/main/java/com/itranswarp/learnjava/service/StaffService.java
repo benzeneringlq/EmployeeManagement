@@ -18,7 +18,7 @@ public class StaffService {
 
     // 注入UserMapper:
     @Autowired
-    private StaffMapper StaffMapper;
+    private StaffMapper staffMapper;
 
     @Autowired
     private Gson gson;
@@ -27,7 +27,7 @@ public class StaffService {
 
     public String entryStaff(String json) {
         Staff staff = gson.fromJson(json, Staff.class);
-        StaffMapper.entryStaff(staff);
+        staffMapper.entryStaff(staff);
         return "success";
     }
 
@@ -38,7 +38,7 @@ public class StaffService {
         // from:selectStaff(String json) {");
         // System.out.println("name is:" + jsonObject.optString("name", null) + "|
         // from:selectStaff(String json) {");
-        List<Staff> staffs = StaffMapper.select(
+        List<Staff> staffs = staffMapper.select(
                 filterObject.optString("name", ""),
                 filterObject.optString("staffID", ""),
                 filterObject.optString("departmentID", ""),
@@ -50,13 +50,13 @@ public class StaffService {
 
     public String entryProbation(String json) {
         Probation probation = gson.fromJson(json, Probation.class);
-        String resulString = StaffMapper.entryProbation(probation);
+        String resulString = staffMapper.entryProbation(probation);
         return resulString;
     }
 
     public String deleteStaff(String json) {
         JSONObject jsonObject = new JSONObject(json);
-        List<Staff> staffs = StaffMapper.select(
+        List<Staff> staffs = staffMapper.select(
                 jsonObject.getString("staffName"),
                 jsonObject.getString("staffID"),
                 jsonObject.getString("departmentName"),

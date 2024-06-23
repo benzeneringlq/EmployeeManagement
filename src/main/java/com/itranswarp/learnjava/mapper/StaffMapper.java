@@ -18,9 +18,6 @@ import com.itranswarp.learnjava.entity.Staff;
 @Mapper
 public interface StaffMapper {
 
-        @Select("SELECT name FROM users WHERE username = #{username}")
-        String getUserbyUsername(@Param("username") String username);
-
         @Select("SELECT alertName,alertBadge,viewed FROM Alerts WHERE username = #{username}")
         List<Alert> getAlertbyUsername(@Param("username") String username);
 

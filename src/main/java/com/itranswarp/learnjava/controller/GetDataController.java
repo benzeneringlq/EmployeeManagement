@@ -18,9 +18,42 @@ public class GetDataController {
     @Autowired
     GetDataService getDataService;
 
+
+    @PostMapping(value = "/deletePosition")
+    public ResponseEntity<String> deletePosition(@RequestBody String data) {
+        try {
+            String resulString = getDataService.deletePosition(data);
+            return ResponseEntity.ok(resulString);
+        } catch (Exception e) {
+            return createErrorResponse("error", e);
+        }
+
+    }
+
+    @PostMapping(value = "/updatePosition")
+    public ResponseEntity<String> updatePosition(@RequestBody String data) {
+        try {
+            String resulString = getDataService.updatePosition(data);
+            return ResponseEntity.ok(resulString);
+        } catch (Exception e) {
+            return createErrorResponse("error", e);
+        }
+
+    }
+    @PostMapping(value = "/insertPosition")
+    public ResponseEntity<String> insertPosition(@RequestBody String data) {
+        try {
+            String resulString = getDataService.insertPosition(data);
+            return ResponseEntity.ok(resulString);
+        } catch (Exception e) {
+            return createErrorResponse("error", e);
+        }
+
+    }
+
+
     @PostMapping(value = "/selectPosition")
     public ResponseEntity<String> selectPosition(@RequestBody String filter) {
-        System.out.println("Post /data/selectPosition!!" + filter);
         try {
             String resulString = getDataService.selectPosition(filter);
             return ResponseEntity.ok(resulString);
@@ -32,7 +65,6 @@ public class GetDataController {
 
     @PostMapping(value = "/selectDepartment")
     public ResponseEntity<String> selectDepartment(@RequestBody String filter) {
-        System.out.println("Post /data/selectDepartment!!" + filter);
         try {
             String resulString = getDataService.selectDepartment(filter);
             return ResponseEntity.ok(resulString);

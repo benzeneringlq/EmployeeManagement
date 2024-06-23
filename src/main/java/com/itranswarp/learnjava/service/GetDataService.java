@@ -22,6 +22,26 @@ public class GetDataService {
     @Autowired
     private Gson gson;
 
+    public String deletePosition(String id) {
+        getDataMapper.deletePosition(id);
+        return "success";
+
+    }
+
+    public String updatePosition(String data) {
+        Position position = gson.fromJson(data, Position.class);
+        getDataMapper.updatePosition(position);
+        return position.getID();
+
+    }
+
+    public String insertPosition(String data) {
+        Position position = gson.fromJson(data, Position.class);
+        getDataMapper.insertPosition(position);
+        return position.getID();
+
+    }
+
     public String selectPosition(String filter) {
         JSONObject filterObject = new JSONObject(filter);
         List<Position> positions = getDataMapper.selectPosition(
