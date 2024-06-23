@@ -2,7 +2,7 @@
 AppConfig.java
 app.log
 git.sh
-/src/main/webapp
+src/main/resources/jdbc.properties
 
 # Logs
 logs

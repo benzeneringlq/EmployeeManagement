@@ -28,7 +28,7 @@ public class AdminService {
     // }
 
     public String getAlert(String username) {
-        List<Alert> alerts = adminMapper.getAlertbyUsername(username);
+        List<Alert> alerts = adminMapper.getAlertByUsername(username);
         String resulString = gson.toJson(alerts);
         return resulString;
     }
