@@ -7,6 +7,6 @@ public class Position {
     String establishmentQuantity;
 
     public String getID() {
-        return positionID);
+        return positionID;
     }
 }
