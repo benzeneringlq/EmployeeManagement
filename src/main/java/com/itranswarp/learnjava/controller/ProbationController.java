@@ -26,7 +26,7 @@ public class ProbationController {
             String resulString = probationService.selectProbation(filter);
             return ResponseEntity.ok(resulString);
         } catch (Exception e) {
-            return createErrorResponse("error", e);
+            return MyFunction.createErrorResponse("error", e);
         }
 
     }
@@ -38,7 +38,7 @@ public class ProbationController {
             String resulString = probationService.getProbationstatus();
             return ResponseEntity.ok(resulString);
         } catch (Exception e) {
-            return createErrorResponse("error", e);
+            return MyFunction.createErrorResponse("error", e);
         }
 
     }
@@ -49,15 +49,9 @@ public class ProbationController {
             String resulString = probationService.entryProbation(json);
             return ResponseEntity.ok(resulString);
         } catch (Exception e) {
-            return createErrorResponse("error", e);
+            return MyFunction.createErrorResponse("error", e);
         }
     }
 
-    // 错误处理函数
-    private ResponseEntity<String> createErrorResponse(String errorCode, Exception e) {
-        JSONObject errorJson = new JSONObject();
-        errorJson.put("success", false);
-        errorJson.put(errorCode, e);
-        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorJson.toString());
-    }
+
 }

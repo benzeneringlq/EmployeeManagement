@@ -2,6 +2,8 @@ package com.itranswarp.learnjava.service;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Delete;
+import org.apache.ibatis.annotations.Param;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -24,7 +26,6 @@ public class StaffService {
     private Gson gson;
 
 
-
     public String entryStaff(String json) {
         Staff staff = gson.fromJson(json, Staff.class);
         staffMapper.entryStaff(staff);
@@ -32,37 +33,35 @@ public class StaffService {
     }
 
     public String selectStaff(String filter) {
-        JSONObject filterObject = new JSONObject(filter);
-        // System.out.println(json);
-        // System.out.println("staffID is:" + jsonObject.optString("staffID", null) + "|
-        // from:selectStaff(String json) {");
-        // System.out.println("name is:" + jsonObject.optString("name", null) + "|
-        // from:selectStaff(String json) {");
-        List<Staff> staffs = staffMapper.select(
-                filterObject.optString("name", ""),
-                filterObject.optString("staffID", ""),
-                filterObject.optString("departmentID", ""),
-                filterObject.optString("positionID", ""));
+        Staff staffFilter = gson.fromJson(filter, Staff.class);
+        List<Staff> staffs = staffMapper.select(staffFilter);
 
-        String responsejson = gson.toJson(staffs);
-        return responsejson;
+        return gson.toJson(staffs);
     }
 
     public String entryProbation(String json) {
         Probation probation = gson.fromJson(json, Probation.class);
-        String resulString = staffMapper.entryProbation(probation);
-        return resulString;
+        return staffMapper.entryProbation(probation);
     }
 
-    public String deleteStaff(String json) {
-        JSONObject jsonObject = new JSONObject(json);
-        List<Staff> staffs = staffMapper.select(
-                jsonObject.getString("staffName"),
-                jsonObject.getString("staffID"),
-                jsonObject.getString("departmentName"),
-                jsonObject.getString("positionName"));
+    public String deleteStaff(String id) {
+        staffMapper.deleteStaff(id);
+        return id;
+    }
 
-        String responsejson = gson.toJson(staffs);
-        return responsejson;
+    public String updateStaff(String json) {
+        Staff staff = gson.fromJson(json, Staff.class);
+        staffMapper.updateStaff(staff);
+        return "success";
+    }
+
+    public String changeDepartmentAndPosition(String json) {
+        JSONObject jsonObject = new JSONObject(json);
+        staffMapper.changeDepartmentAndPosition(
+                jsonObject.getString("staffID"),
+                jsonObject.getString("departmentID"),
+                jsonObject.getString("positionID"),
+                jsonObject.getString("cause"));
+        return "success";
     }
 }

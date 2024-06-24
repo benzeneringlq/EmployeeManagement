@@ -2,6 +2,8 @@ package com.itranswarp.learnjava.service;
 
 import java.util.List;
 
+import com.itranswarp.learnjava.mapper.DepartmentMapper;
+import com.itranswarp.learnjava.mapper.PositionMapper;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,57 +22,29 @@ public class GetDataService {
     @Autowired
     private GetDataMapper getDataMapper;
     @Autowired
+    private DepartmentMapper departmentMapper;
+    @Autowired
+    private PositionMapper positionMapper;
+    @Autowired
     private Gson gson;
 
-    public String deletePosition(String id) {
-        getDataMapper.deletePosition(id);
+    /**
+     * 从数据库拿月报的Service方法
+     */
+    public String getMonthlyForm() {
         return "success";
-
     }
 
-    public String updatePosition(String data) {
-        Position position = gson.fromJson(data, Position.class);
-        getDataMapper.updatePosition(position);
-        return position.getID();
 
-    }
 
-    public String insertPosition(String data) {
-        Position position = gson.fromJson(data, Position.class);
-        getDataMapper.insertPosition(position);
-        return position.getID();
-
-    }
-
-    public String selectPosition(String filter) {
-        JSONObject filterObject = new JSONObject(filter);
-        List<Position> positions = getDataMapper.selectPosition(
-                filterObject.optString("id", ""),
-                filterObject.optString("name", ""),
-                filterObject.optString("type", ""));
-        String json = gson.toJson(positions);
-        return json;
-
-    }
-
-    public String selectDepartment(String filter) {
-        JSONObject filterObject = new JSONObject(filter);
-        List<Department> departments = getDataMapper.selectDepartment(
-                filterObject.optString("id", ""),
-                filterObject.optString("name", ""),
-                filterObject.optString("type", ""));
-        String json = gson.toJson(departments);
-        return json;
-
-    }
 
     public String getDataByTable(String table) {
         if (table.equals("Position")) {
-            List<Position> positions = getDataMapper.getPositions();
+            List<Position> positions = positionMapper.getPositions();
             String json = gson.toJson(positions);
             return json;
         } else if (table.equals("Department")) {
-            List<Department> departments = getDataMapper.getDepartments();
+            List<Department> departments = departmentMapper.getDepartments();
             String json = gson.toJson(departments);
             return json;
         } else {
@@ -81,7 +55,7 @@ public class GetDataService {
 
     public String getIdNameByTable(String table) {
         System.out.println(table);
-        List<NameID> names = getDataMapper.getIDNameBytable(table, table.toLowerCase());
+        List<NameID> names = getDataMapper.getIDNameByTable(table, table.toLowerCase());
         String json = gson.toJson(names);
         return json;
 

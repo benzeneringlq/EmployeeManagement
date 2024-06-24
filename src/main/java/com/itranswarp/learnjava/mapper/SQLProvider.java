@@ -2,6 +2,7 @@ package com.itranswarp.learnjava.mapper;
 
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
+import com.itranswarp.learnjava.entity.Staff;
 import org.apache.ibatis.jdbc.SQL;
 
 @Mapper
@@ -89,25 +90,22 @@ public class SQLProvider {
     }
 
     public String selectStaff(
-            @Param("name") String name,
-            @Param("staffID") String staffID,
-            @Param("departmentID") String departmentID,
-            @Param("positionID") String positionID) {
+            @Param("staffFilter") Staff staffFilter) {
         return new SQL() {
             {
                 SELECT("*");
                 FROM("Staff");
-                if (!"".equals(name)) {
+                if (!"".equals(staffFilter.name)) {
                     WHERE("name = #{name}");
                 }
-                if (!"".equals(staffID)) {
+                if (!"".equals(staffFilter.staffID)) {
                     WHERE("staffID = #{staffID}");
                     // WHERE("id = " + id); 危险
                 }
-                if (!"".equals(departmentID)) {
+                if (!"".equals(staffFilter.departmentID)) {
                     WHERE("departmentID = #{departmentID}");
                 }
-                if (!"".equals(positionID)) {
+                if (!"".equals(staffFilter.positionID)) {
                     WHERE("positionID = #{positionID}");
                 }
             }

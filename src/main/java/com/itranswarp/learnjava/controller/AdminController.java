@@ -30,7 +30,7 @@ public class AdminController {
             String resuString =adminService.getAlert(username);
             return ResponseEntity.ok(resuString);
         } catch (Exception e) {
-            return createErrorResponse("error", e);
+            return MyFunction.createErrorResponse("error", e);
         }
 
     }
@@ -41,16 +41,11 @@ public class AdminController {
             String resuString =adminService.login(json);
             return ResponseEntity.ok(resuString);
         } catch (Exception e) {
-            return createErrorResponse("error", e);
+            return MyFunction.createErrorResponse("error", e);
         }
         
     }
 
-    private ResponseEntity<String> createErrorResponse(String errorCode, Exception e) {
-        JSONObject errorJson = new JSONObject();
-        errorJson.put("success", false);
-        errorJson.put(errorCode, e);
-        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorJson.toString());
-    }
+
 
 }
