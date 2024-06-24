@@ -1,12 +1,12 @@
 package com.itranswarp.learnjava.entity;
 
 public class Position {
-    int positionID;
+    String positionID;
     String name;
     String type;
-    int establishmentQuantity;
+    String establishmentQuantity;
 
     public String getID() {
-        return String.valueOf(positionID);
+        return positionID);
     }
 }

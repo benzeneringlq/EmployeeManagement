@@ -3,8 +3,8 @@ package com.itranswarp.learnjava.entity;
 import java.sql.Timestamp;
 
 public class TransForm {
-    int formID;
-    int staffID;
+    String formID;
+    String staffID;
     Timestamp transFormDate;
     String cause;
 }

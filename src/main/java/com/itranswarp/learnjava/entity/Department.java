@@ -2,7 +2,7 @@ package com.itranswarp.learnjava.entity;
 import java.sql.Timestamp;
 
 public class Department {
-    int departmentID;
+    String departmentID;
     String name;
     String type;
     String TEL;

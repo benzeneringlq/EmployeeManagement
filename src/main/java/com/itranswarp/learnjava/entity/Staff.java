@@ -3,9 +3,9 @@ package com.itranswarp.learnjava.entity;
 import java.sql.Timestamp;
 
 public class Staff {
-    public int staffID;
-    public int departmentID;
-    public int positionID = 1;
+    public String staffID;
+    public String departmentID;
+    public String positionID = "1";
     public String name;
     public Boolean gender;
     String degree = "本科";

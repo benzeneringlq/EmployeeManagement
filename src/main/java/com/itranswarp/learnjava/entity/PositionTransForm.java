@@ -4,6 +4,6 @@ import java.sql.Timestamp;
 
 public class PositionTransForm  extends TransForm{
 
-    int oldPositionID;
-    int newPositionID;
+    String oldPositionID;
+    String newPositionID;
 }

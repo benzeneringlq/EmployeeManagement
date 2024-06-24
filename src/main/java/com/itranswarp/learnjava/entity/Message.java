@@ -1,7 +1,7 @@
 package com.itranswarp.learnjava.entity;
 
 public class Message {
-   int id;
+	String id;
 	String	username;
 	String	msgName;
 	String	msgDate;
