@@ -12,5 +12,4 @@ import com.itranswarp.learnjava.entity.Alert;
 public interface AdminMapper {
         @Select("SELECT alertName,alertBadge,viewed FROM Alerts WHERE username = #{username}")
         List<Alert> getAlertByUsername(@Param("username") String username);
-
 }

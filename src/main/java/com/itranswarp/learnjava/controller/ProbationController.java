@@ -1,8 +1,6 @@
 package com.itranswarp.learnjava.controller;
 
-import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -31,11 +29,11 @@ public class ProbationController {
 
     }
 
-    @PostMapping(value = "/getProbationstatus")
-    public ResponseEntity<String> getProbationstatus() {
+    @PostMapping(value = "/getProbationStatus")
+    public ResponseEntity<String> getProbationStatus() {
 
         try {
-            String resulString = probationService.getProbationstatus();
+            String resulString = probationService.getProbationStatus();
             return ResponseEntity.ok(resulString);
         } catch (Exception e) {
             return MyFunction.createErrorResponse("error", e);

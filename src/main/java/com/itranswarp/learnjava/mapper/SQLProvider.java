@@ -1,5 +1,6 @@
 package com.itranswarp.learnjava.mapper;
 
+import com.itranswarp.learnjava.entity.Probation;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import com.itranswarp.learnjava.entity.Staff;
@@ -113,38 +114,32 @@ public class SQLProvider {
     }
 
     public String selectProbation(
-            @Param("name") String name,
-            @Param("probationStaffID") String probationStaffID,
-            @Param("departmentID") String departmentID,
-            @Param("positionID") String positionID,
-            @Param("status") String status,
-            @Param("startDate") String startDate,
-            @Param("endDate") String endDate) {
+            @Param("filter") Probation filter) {
         return new SQL() {
             {
                 SELECT("Probation.*,Staff.name,Staff.DepartmentID");
                 FROM("Probation");
                 JOIN("Staff ON Staff.staffID = Probation.staffID");
-                if (name != null && !"".equals(name)) {
-                    WHERE("Staff.name = #{name}");
+                if (filter.name != null && !filter.name.isBlank()) {
+                    WHERE("Staff.name = #{filter.name}");
                 }
-                if (probationStaffID != null && !"".equals(probationStaffID)) {
-                    WHERE("Probation.probationStaffID = #{probationStaffID}");
+                if (filter.probationStaffID !=0 ) {
+                    WHERE("Probation.probationStaffID = #{filter.probationStaffID}");
                 }
-                if (departmentID != null && !"".equals(departmentID)) {
-                    WHERE("Staff.departmentID = #{departmentID}");
+                if (filter.departmentID != 0) {
+                    WHERE("Staff.departmentID = #{filter.departmentID}");
                 }
-                if (positionID != null && !"".equals(positionID)) {
-                    WHERE("Staff.positionID = #{positionID}");
+                if (filter.positionID != 0) {
+                    WHERE("Staff.positionID = #{filter.positionID}");
                 }
-                if (status != null && !"".equals(status)) {
-                    WHERE("Probation.status = #{status}");
+                if (filter.status != null && !filter.status.isBlank()) {
+                    WHERE("Staff.status = #{filter.status}");
                 }
-                if (startDate != null && !"".equals(startDate)) {
-                    WHERE("Probation.startDate = #{startDate}");
+                if (filter.startDate != null) {
+                    WHERE("Probation.startDate = #{filter.startDate}");
                 }
-                if (endDate != null && !"".equals(endDate)) {
-                    WHERE("Probation.endDate = #{endDate}");
+                if (filter.endDate != null ) {
+                    WHERE("Probation.endDate = #{filter.endDate}");
                 }
             }
         }.toString();

@@ -3,26 +3,29 @@ package com.itranswarp.learnjava.mapper;
 import java.sql.Timestamp;
 import java.util.List;
 
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.annotations.Select;
-import org.apache.ibatis.annotations.SelectProvider;
+import org.apache.ibatis.annotations.*;
 
 import com.itranswarp.learnjava.entity.Probation;
+import org.apache.ibatis.mapping.StatementType;
 
 @Mapper
 public interface ProbationMapper {
 
-    @Select("SELECT status FROM Probation")
-    List<Probation> getProbationstatus();
+    @Select("SELECT Staff.status FROM Probation INNER JOIN Staff ON Probation.staffID = Staff.staffID")
+    List<Probation> getProbationStatus();
 
     @SelectProvider(type = SQLProvider.class, method = "selectProbation")
-    List<Probation> selectProbation(
-            @Param("name") String name,
-            @Param("probationStaffID") String probationStaffID,
-            @Param("departmentID") String departmentID,
-            @Param("positionID") String positionID,
-            @Param("status") String status,
-            @Param("startDate") String startDate,
-            @Param("endDate") String endDate);
+    List<Probation> selectProbation(@Param("filter") Probation filter);
+
+    @Select("CALL AddStaffAndProbation("
+            + "#{probation.departmentID}, #{probation.positionID}, #{probation.name}, #{probation.gender} "
+            + ",#{probation.degree}, #{probation.joinDate}, #{probation.workStartDate} "
+            + ",#{probation.employmentType}, #{probation.source}, #{probation.idNumber} "
+            + ",#{probation.startDate}, #{probation.endDate})")
+    // @Results({
+    // @Result(column = "result", property = "result", jdbcType = JdbcType.INTEGER)
+    // })
+    @Options(statementType = StatementType.CALLABLE)
+    String entryProbation(@Param("probation") Probation probation);
+
 }

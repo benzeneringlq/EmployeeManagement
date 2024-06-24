@@ -39,11 +39,6 @@ public class StaffService {
         return gson.toJson(staffs);
     }
 
-    public String entryProbation(String json) {
-        Probation probation = gson.fromJson(json, Probation.class);
-        return staffMapper.entryProbation(probation);
-    }
-
     public String deleteStaff(String id) {
         staffMapper.deleteStaff(id);
         return id;

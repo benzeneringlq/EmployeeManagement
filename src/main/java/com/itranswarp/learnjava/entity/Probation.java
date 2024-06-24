@@ -1,8 +1,9 @@
 package com.itranswarp.learnjava.entity;
+
 import java.sql.Timestamp;
 
-public class Probation extends Staff{
-    int probationStaffID;
-    Timestamp startDate;
-    Timestamp endDate;
+public class Probation extends Staff {
+    public int probationStaffID;
+    public Timestamp startDate;
+    public Timestamp endDate;
 }

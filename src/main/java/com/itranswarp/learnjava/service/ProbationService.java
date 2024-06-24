@@ -21,26 +21,23 @@ public class ProbationService {
     private Gson gson;
 
     public String selectProbation(String filter) {
-        JSONObject filterObject = new JSONObject(filter);
-        List<Probation> probaitons = probationMapper.selectProbation(
-                filterObject.optString("name", ""),
-                filterObject.optString("staffID", ""),
-                filterObject.optString("departmentID", ""),
-                filterObject.optString("positionID", ""),
-                filterObject.optString("status", ""),
-                filterObject.optString("startDate", ""),
-                filterObject.optString("endDate", ""));
+//        Probation probation=Jackson
+        Probation probation = gson.fromJson(filter, Probation.class);
+        List<Probation> probaitons = probationMapper.selectProbation(probation);
         String responsejson = gson.toJson(probaitons);
         return responsejson;
 
     }
 
-    public String getProbationstatus() {
-        List<Probation> probations = probationMapper.getProbationstatus();
+    public String getProbationStatus() {
+        List<Probation> probations = probationMapper.getProbationStatus();
         return gson.toJson(probations);
     }
 
+
     public String entryProbation(String json) {
-        return "TO-DO";
+        Probation probation = gson.fromJson(json, Probation.class);
+        return probationMapper.entryProbation(probation);
     }
+
 }

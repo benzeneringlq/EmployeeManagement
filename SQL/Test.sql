@@ -31,11 +31,14 @@
 -- INSERT INTO Position (name,type,establishmentQuantity)VALUES("name","管理","2")
 -- UPDATE Position SET NAME="520",type="520" , establishmentQuantity ="520" WHERE positionID=11;
 -- CALL ProcessResignation(1,"吃饭");
--- call changeDepartmentAndPosition (1,1,2,"吃饭");
--- call changeDepartmentAndPosition (2,2,2,"吃饭");
--- call changeDepartmentAndPosition (3,1,2,"吃饭");
-call AddStaffAndProbation(1, 1, 'test', 1, '本科'
-    ,'2024-5-5', '2024-5-5', '176', 'home'
-    ,'实习', '校招', 'idNumber'
-    ,'2024-5-5', '2024-5-5'
-     )
+# call changeDepartmentAndPosition (1,1,2,"吃饭");
+# call changeDepartmentAndPosition (2,2,2,"吃饭");
+# call changeDepartmentAndPosition (3,1,2,"吃饭");
+# call AddStaffAndProbation(1, 1, 'test',
+#                           1, '本科',
+#                           '2024-5-5', '2024-5-5', '176',
+#                           'home', '实习',
+#                           '校招', 'idNumber',
+#                           '2024-5-5', '2024-5-5'
+#      )
+call changeProbation(9,0,'2025-10-10')

@@ -13,7 +13,7 @@ public class Staff {
     Timestamp workStartDate;
     String TEL;
     String home;
-    String status;
+    public String status;
     String employmentType;
     String source;
     public String idNumber;
