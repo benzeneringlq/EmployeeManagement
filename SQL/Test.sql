@@ -41,4 +41,23 @@
 #                           '校招', 'idNumber',
 #                           '2024-5-5', '2024-5-5'
 #      )
-call changeProbation(9,0,'2025-10-10')
+# call changeProbation(9,0,'2025-10-10')
+# call AddStaff(1,1,'name','1','本科','2024-5-5','2024-5-5','123','123','正式','吃饭','来源','1')
+-- 更改实习生 -------------------------------------------------------------------------------------
+DROP PROCEDURE
+    IF
+        EXISTS testPROCEDURE;
+
+DELIMITER //
+
+CREATE PROCEDURE testPROCEDURE(
+    IN p_probationStaffID INT,
+    IN p_change VARCHAR(30),
+    IN datee DATE
+)
+BEGIN
+    DECLARE p_staffID INT;
+
+END //
+
+DELIMITER ;

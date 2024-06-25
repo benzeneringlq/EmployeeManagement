@@ -1,9 +1,9 @@
 package com.itranswarp.learnjava.entity;
 
 public class Position {
-    String positionID;
-    String name;
-    String type;
+    public String positionID;
+    public String name;
+    public String type;
     String establishmentQuantity;
 
     public String getID() {

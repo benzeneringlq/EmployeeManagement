@@ -22,6 +22,9 @@ public class DimissionService {
 
     public String selectDimission(String filter) {
         JSONObject filterObject = new JSONObject(filter);
+        System.out.println(filterObject.optString("startDate", ""));
+        System.out.println(filterObject.optString("endDate", ""));
+        System.out.println("selectDimission");
         List<Dimission> dimissions = dimissionMapper.selectDimission(
                 filterObject.optString("staffID", ""),
                 filterObject.optString("name", ""),
@@ -30,7 +33,6 @@ public class DimissionService {
                 filterObject.optString("startDate", ""),
                 filterObject.optString("endDate", ""),
                 filterObject.optString("cause", ""));
-        String resulString = gson.toJson(dimissions);
-        return resulString;
+        return gson.toJson(dimissions);
     }
 }

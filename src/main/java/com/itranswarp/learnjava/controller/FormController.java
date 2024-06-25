@@ -1,5 +1,6 @@
 package com.itranswarp.learnjava.controller;
 
+import com.itranswarp.learnjava.service.DimissionService;
 import com.itranswarp.learnjava.service.FormService;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,9 +22,9 @@ public class FormController {
      * 新员工报表
      */
     @PostMapping("/getNewForm")
-    public ResponseEntity<String> getNewForm(@RequestBody String number) {
+    public ResponseEntity<String> getNewForm(@RequestBody String json) {
         try {
-            String resulString = formService.getNewForm();
+            String resulString = formService.getNewForm(json);
             return ResponseEntity.ok(resulString);
         } catch (Exception e) {
             return MyFunction.createErrorResponse("error", e);
@@ -34,9 +35,9 @@ public class FormController {
      * 离职员工报表
      */
     @PostMapping("/getDimForm")
-    public ResponseEntity<String> getDimForm(@RequestBody String number) {
+    public ResponseEntity<String> getDimForm(@RequestBody String json) {
         try {
-            String resulString = formService.getDimForm();
+            String resulString = formService.getDimForm(json);
             return ResponseEntity.ok(resulString);
         } catch (Exception e) {
             return MyFunction.createErrorResponse("error", e);
@@ -47,9 +48,9 @@ public class FormController {
      * 岗位调整
      */
     @PostMapping("/getPosTransForm")
-    public ResponseEntity<String> getPosTransForm(@RequestBody String number) {
+    public ResponseEntity<String> getPosTransForm(@RequestBody String json) {
         try {
-            String resulString = formService.getPosTransForm();
+            String resulString = formService.getPosTransForm(json);
             return ResponseEntity.ok(resulString);
         } catch (Exception e) {
             return MyFunction.createErrorResponse("error", e);
@@ -60,9 +61,9 @@ public class FormController {
      * 部门调整
      */
     @PostMapping("/getDepTransForm")
-    public ResponseEntity<String> getDepTransForm(@RequestBody String number) {
+    public ResponseEntity<String> getDepTransForm(@RequestBody String json) {
         try {
-            String resulString = formService.getDepTransForm();
+            String resulString = formService.getDepTransForm(json);
             return ResponseEntity.ok(resulString);
         } catch (Exception e) {
             return MyFunction.createErrorResponse("error", e);
@@ -73,9 +74,9 @@ public class FormController {
      * 月报
      */
     @PostMapping("/getMonthlyForm")
-    public ResponseEntity<String> getMonthlyForm(@RequestBody String number) {
+    public ResponseEntity<String> getMonthlyForm(@RequestBody String json) {
         try {
-            String resulString = formService.getMonthlyForm();
+            String resulString = formService.getMonthlyForm(json);
             return ResponseEntity.ok(resulString);
         } catch (Exception e) {
             return MyFunction.createErrorResponse("error", e);

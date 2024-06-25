@@ -23,10 +23,11 @@ public interface StaffMapper {
     // +
     // "(#{staff.departmentName},#{staff.positionID},#{staff.name},#{staff.gender},#{staff.degree},#{staff.joinDate},#{staff.workStartDate},#{staff.employmentType}"
     // + ",#{staff.source},#{staff.idNumber})")
+
     @Select("call AddStaff"
-            + "(#{staff.departmentID},1,#{staff.name},${staff.gender},#{staff.degree}"
+            + "(#{staff.departmentID},'1',#{staff.name},${staff.gender},#{staff.degree}"
             + ",#{staff.joinDate},#{staff.workStartDate}"
-            + ",#{staff.TEL},#{staff.home}"
+            + ",#{staff.TEL},#{staff.home},'正式'"
             + ",#{staff.employmentType},#{staff.source},#{staff.idNumber})")
     @Options(statementType = StatementType.CALLABLE)
     void entryStaff(@Param("staff") Staff staff);
@@ -34,8 +35,9 @@ public interface StaffMapper {
 
     @Delete("DELETE FROM Staff WHERE staffID = #{id}")
     void deleteStaff(@Param("id") String id);
-
-    @Update("UPDATE  Staff SET status=#{staff.status},TEL=#{staff.TEL},home=#{staff.home} WHERE staffID=#{staff.staffID}")
+    @Select("CALL ProcessResignation(#{id},'离职')")
+    void dimStaff(@Param("id") String id);
+    @Update("UPDATE  Staff SET TEL=#{staff.TEL},home=#{staff.home} WHERE staffID=#{staff.staffID}")
     void updateStaff(@Param("staff") Staff staff);
 
     @Select("CALL changeDepartmentAndPosition("

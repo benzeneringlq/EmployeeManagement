@@ -59,6 +59,18 @@ public class StaffController {
         }
     }
     /**
+     * 离职员工
+     */
+    @PostMapping(value = "/dimStaff")
+    public ResponseEntity<String> dimStaff(@RequestBody String id) {
+        try {
+            String resulString = staffService.dimStaff(id);
+            return ResponseEntity.ok(resulString);
+        } catch (Exception e) {
+            return MyFunction.createErrorResponse("error", e);
+        }
+    }
+    /**
      * 更改员工
      */
     @PostMapping(value = "/updateStaff")

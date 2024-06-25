@@ -39,6 +39,12 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
+<!--            <exclusions>-->
+<!--                <exclusion>-->
+<!--                    <groupId>org.springframework.boot</groupId>-->
+<!--                    <artifactId>spring-boot-starter-logging</artifactId>-->
+<!--                </exclusion>-->
+<!--            </exclusions>-->
         </dependency>
 
         <dependency>
@@ -199,23 +205,23 @@
             <artifactId>jstl</artifactId>
             <version>1.2</version>
         </dependency>
-        <!--    &lt;!&ndash; log4j日志 &ndash;&gt;-->
-        <!--    <dependency>-->
-        <!--      <groupId>org.apache.logging.log4j</groupId>-->
-        <!--      <artifactId>log4j-core</artifactId>-->
-        <!--      <version>${log4j.version}</version>-->
-        <!--    </dependency>-->
+            <!-- log4j日志 -->
+            <dependency>
+              <groupId>org.apache.logging.log4j</groupId>
+              <artifactId>log4j-core</artifactId>
+              <version>${log4j.version}</version>
+            </dependency>
 
-        <!--    <dependency>-->
-        <!--      <groupId>org.slf4j</groupId>-->
-        <!--      <artifactId>slf4j-api</artifactId>-->
-        <!--      <version>${slf4j.version}</version>-->
-        <!--    </dependency>-->
-        <!--    <dependency>-->
-        <!--      <groupId>org.slf4j</groupId>-->
-        <!--      <artifactId>slf4j-reload4j</artifactId>-->
-        <!--      <version>${slf4j.version}</version>-->
-        <!--    </dependency>-->
+            <dependency>
+              <groupId>org.slf4j</groupId>
+              <artifactId>slf4j-api</artifactId>
+              <version>${slf4j.version}</version>
+            </dependency>
+            <dependency>
+              <groupId>org.slf4j</groupId>
+              <artifactId>slf4j-reload4j</artifactId>
+              <version>${slf4j.version}</version>
+            </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-actuator</artifactId>

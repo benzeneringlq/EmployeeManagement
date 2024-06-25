@@ -1,5 +1,6 @@
 package com.itranswarp.learnjava.mapper;
 
+import com.itranswarp.learnjava.entity.Position;
 import com.itranswarp.learnjava.entity.Probation;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
@@ -10,22 +11,19 @@ import org.apache.ibatis.jdbc.SQL;
 public class SQLProvider {
 
     public String selectPosition(
-            @Param("id") String id,
-            @Param("name") String name,
-            @Param("type") String type) {
+            @Param("filter") Position filter) {
         return new SQL() {
             {
                 SELECT("*");
                 FROM("Position");
-                if (!"".equals(id)) {
-                    WHERE("positionID = #{id}");
+                if (filter.positionID != null && !filter.positionID.isEmpty()) {
+                    WHERE("positionID = #{filter.positionID}");
                 }
-                if (!"".equals(name)) {
-                    WHERE("name = #{name}");
-                    // WHERE("id = " + id); 危险
+                if (filter.name != null && !filter.name.isEmpty()) {
+                    WHERE("name = #{filter.name}");
                 }
-                if (!"".equals(type)) {
-                    WHERE("type = #{type}");
+                if (filter.type != null && !filter.type.isEmpty()) {
+                    WHERE("type = #{filter.type}");
                 }
             }
         }.toString();
@@ -44,7 +42,6 @@ public class SQLProvider {
                 }
                 if (!"".equals(name)) {
                     WHERE("name = #{name}");
-                    // WHERE("id = " + id); 危险
                 }
                 if (!"".equals(type)) {
                     WHERE("type = #{type}");
@@ -96,18 +93,17 @@ public class SQLProvider {
             {
                 SELECT("*");
                 FROM("Staff");
-                if (!"".equals(staffFilter.name)) {
-                    WHERE("name = #{name}");
+                if (staffFilter.name != null && !staffFilter.name.isEmpty()) {
+                    WHERE("name = #{staffFilter.name}");
                 }
-                if (!"".equals(staffFilter.staffID)) {
-                    WHERE("staffID = #{staffID}");
-                    // WHERE("id = " + id); 危险
+                if (staffFilter.staffID != null && !staffFilter.staffID.isEmpty()) {
+                    WHERE("staffID = #{staffFilter.staffID}");
                 }
-                if (!"".equals(staffFilter.departmentID)) {
-                    WHERE("departmentID = #{departmentID}");
+                if (staffFilter.departmentID != null && !staffFilter.departmentID.isEmpty()) {
+                    WHERE("departmentID = #{staffFilter.departmentID}");
                 }
-                if (!"".equals(staffFilter.positionID)) {
-                    WHERE("positionID = #{positionID}");
+                if (staffFilter.positionID != null && !staffFilter.positionID.isEmpty()) {
+                    WHERE("positionID = #{staffFilter.positionID}");
                 }
             }
         }.toString();
@@ -117,28 +113,28 @@ public class SQLProvider {
             @Param("filter") Probation filter) {
         return new SQL() {
             {
-                SELECT("Probation.*,Staff.name,Staff.DepartmentID");
+                SELECT("Probation.*,Staff.name,Staff.DepartmentID,Staff.status");
                 FROM("Probation");
                 JOIN("Staff ON Staff.staffID = Probation.staffID");
-                if (filter.name != null && !filter.name.isBlank()) {
+                if (filter.name != null && !filter.name.isEmpty()) {
                     WHERE("Staff.name = #{filter.name}");
                 }
-                if (filter.probationStaffID !=0 ) {
+                if (filter.probationStaffID != null && !filter.probationStaffID.isEmpty()) {
                     WHERE("Probation.probationStaffID = #{filter.probationStaffID}");
                 }
-                if (filter.departmentID != 0) {
+                if (filter.departmentID != null && !filter.departmentID.isEmpty()) {
                     WHERE("Staff.departmentID = #{filter.departmentID}");
                 }
-                if (filter.positionID != 0) {
+                if (filter.positionID != null && !filter.positionID.isEmpty()) {
                     WHERE("Staff.positionID = #{filter.positionID}");
                 }
-                if (filter.status != null && !filter.status.isBlank()) {
+                if (filter.status != null && !filter.status.isEmpty()) {
                     WHERE("Staff.status = #{filter.status}");
                 }
-                if (filter.startDate != null) {
+                if (filter.startDate != null && !filter.startDate.isEmpty()) {
                     WHERE("Probation.startDate = #{filter.startDate}");
                 }
-                if (filter.endDate != null ) {
+                if (filter.endDate != null && !filter.endDate.isEmpty()) {
                     WHERE("Probation.endDate = #{filter.endDate}");
                 }
             }

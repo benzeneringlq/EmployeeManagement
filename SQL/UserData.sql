@@ -92,7 +92,7 @@ CREATE TABLE
 -- -------------------------------
 CREATE TABLE
 	NewStaffForm (
-		newStaffID int NOT NULL PRIMARY KEY AUTO_INCREMENT,
+		formID int NOT NULL PRIMARY KEY AUTO_INCREMENT,
 		staffID int,
 		jointDate DATE,
 		FOREIGN KEY (staffID) REFERENCES Staff (staffID)
@@ -106,31 +106,32 @@ CREATE TABLE
 		departmentName VARCHAR(30),
 		positionName VARCHAR(30),
 		dimDate DATE,
-		cause VARCHAR(50)
+		cause VARCHAR(50),
+        FOREIGN KEY (staffID) REFERENCES Staff (staffID)
 	);
 
 CREATE TABLE
 	DeptTransForm (
 		formID int NOT NULL PRIMARY KEY AUTO_INCREMENT,
 		staffID int,
-		olddepartmentID int,
-		newdepartmentID int,
-		transFormDate date,
+		oldID int,
+		newID int,
+		date date,
 		cause VARCHAR(50),
 		FOREIGN KEY (staffID) REFERENCES Staff (staffID),
-		FOREIGN KEY (olddepartmentID) REFERENCES Department (departmentID),
-		FOREIGN KEY (newdepartmentID) REFERENCES Department (departmentID)
+		FOREIGN KEY (oldID) REFERENCES Department (departmentID),
+		FOREIGN KEY (newID) REFERENCES Department (departmentID)
 	);
 
 CREATE TABLE
 	PositionTransForm (
 		formID int NOT NULL PRIMARY KEY AUTO_INCREMENT,
 		staffID int,
-		oldpositionID int,
-		newpositionID int,
-		transFormDate date,
+		oldID int,
+        newID int,
+		date date,
 		cause VARCHAR(50),
 		FOREIGN KEY (staffID) REFERENCES Staff (staffID),
-		FOREIGN KEY (oldpositionID) REFERENCES Position (positionID),
-		FOREIGN KEY (newpositionID) REFERENCES Position (positionID)
+		FOREIGN KEY (oldID) REFERENCES Position (positionID),
+		FOREIGN KEY (newID) REFERENCES Position (positionID)
 	);

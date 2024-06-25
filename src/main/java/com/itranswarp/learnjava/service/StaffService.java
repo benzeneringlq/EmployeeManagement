@@ -43,6 +43,10 @@ public class StaffService {
         staffMapper.deleteStaff(id);
         return id;
     }
+    public String dimStaff(String id) {
+        staffMapper.dimStaff(id);
+        return id;
+    }
 
     public String updateStaff(String json) {
         Staff staff = gson.fromJson(json, Staff.class);

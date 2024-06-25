@@ -8,12 +8,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+
 @Service
 public class PositionService {
     @Autowired
     PositionMapper positionMapper;
     @Autowired
     Gson gson;
+
     /**
      * 删除岗位的Service 方法
      */
@@ -26,8 +28,8 @@ public class PositionService {
     /**
      * 更新岗位的Service 方法
      */
-    public String updatePosition(String data) {
-        Position position = gson.fromJson(data, Position.class);
+    public String updatePosition(String json) {
+        Position position = gson.fromJson(json, Position.class);
         positionMapper.updatePosition(position);
         return position.getID();
 
@@ -36,8 +38,8 @@ public class PositionService {
     /**
      * 插入岗位的Service 方法
      */
-    public String insertPosition(String data) {
-        Position position = gson.fromJson(data, Position.class);
+    public String insertPosition(String json) {
+        Position position = gson.fromJson(json, Position.class);
         positionMapper.insertPosition(position);
         return position.getID();
 
@@ -46,14 +48,10 @@ public class PositionService {
     /**
      * 查询岗位的Service 方法
      */
-    public String selectPosition(String filter) {
-        JSONObject filterObject = new JSONObject(filter);
-        List<Position> positions = positionMapper.selectPosition(
-                filterObject.optString("id", ""),
-                filterObject.optString("name", ""),
-                filterObject.optString("type", ""));
-        String json = gson.toJson(positions);
-        return json;
+    public String selectPosition(String json) {
+        Position filter = gson.fromJson(json, Position.class);
+        List<Position> positions = positionMapper.selectPosition(filter);
+        return gson.toJson(positions);
 
     }
 }

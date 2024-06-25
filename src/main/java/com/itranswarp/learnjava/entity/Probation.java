@@ -4,6 +4,6 @@ import java.sql.Timestamp;
 
 public class Probation extends Staff {
     public String probationStaffID;
-    public Timestamp startDate;
-    public Timestamp endDate;
+    public String startDate;
+    public String endDate;
 }

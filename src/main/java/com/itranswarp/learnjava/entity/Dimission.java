@@ -8,6 +8,6 @@ public class Dimission {
     String name;
     String departmentName;
     String positionName;
-    Timestamp dimDate;
+    String dimDate;
     String cause;
 }

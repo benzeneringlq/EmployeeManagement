@@ -1,5 +1,6 @@
 package com.itranswarp.learnjava.mapper;
 
+import com.itranswarp.learnjava.entity.Position;
 import org.apache.ibatis.annotations.*;
 
 import java.util.List;
@@ -12,9 +13,7 @@ public interface PositionMapper
 
     @SelectProvider(type = SQLProvider.class, method = "selectPosition")
     List<com.itranswarp.learnjava.entity.Position> selectPosition(
-            @Param("id") String id,
-            @Param("name") String name,
-            @Param("type") String type);
+            @Param("filter") Position filter);
 
 
     @Insert("INSERT INTO Position (name,type,establishmentQuantity)VALUES(#{position.name},#{position.type},#{position.establishmentQuantity})")

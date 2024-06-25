@@ -11,7 +11,7 @@ import org.apache.ibatis.mapping.StatementType;
 @Mapper
 public interface ProbationMapper {
 
-    @Select("SELECT Staff.status FROM Probation INNER JOIN Staff ON Probation.staffID = Staff.staffID")
+    @Select("SELECT distinct Staff.status FROM Probation INNER JOIN Staff ON Probation.staffID = Staff.staffID")
     List<Probation> getProbationStatus();
 
     @SelectProvider(type = SQLProvider.class, method = "selectProbation")
