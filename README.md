@@ -1,5 +1,10 @@
 # EmployeeManagement
-本项目是作者在2024年6月23日左右实训期间编写，这是后端代码  
-使用Spring-boot开发，前端代码： [Vue-EmployeeManagement](https://github.com/benzeneringlq/Vue-EmployeeManagement)  
-IDEA太香了，大学生开学第一件事不应该是军训，而是申请Jetbrains学生许可证
+本项目是作者2024年6月23日左右实训期间在理学院格物楼F409编写  
+### 这是后端代码
+### 开发工具
+* 使用IntelliJ IDEA编写后端代码和SQL
+* 使用Postion测试接口
+* 使用Navicat查看数据库
+### 后端
 
+* 使用Spring-boot开发
