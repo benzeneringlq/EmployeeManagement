@@ -10,4 +10,8 @@ public class Department {
     String description;
     String superior;
     Timestamp foundingTime;
+
+    public String getID() {
+        return departmentID;
+    }
 }

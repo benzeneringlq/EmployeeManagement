@@ -23,4 +23,44 @@ public class DepartmentController {
         }
 
     }
+    /**
+     * 删除Department
+     */
+    @PostMapping(value = "/deleteDepartment")
+    public ResponseEntity<String> deleteDepartment(@RequestBody String data) {
+        try {
+            String resulString = departmentService.deleteDepartment(data);
+            return ResponseEntity.ok(resulString);
+        } catch (Exception e) {
+            return MyFunction.createErrorResponse("error", e);
+        }
+
+    }
+    /**
+     * 更新Department
+     */
+    @PostMapping(value = "/updateDepartment")
+    public ResponseEntity<String> updateDepartment(@RequestBody String data) {
+        try {
+            String resulString = departmentService.updateDepartment(data);
+            return ResponseEntity.ok(resulString);
+        } catch (Exception e) {
+            return MyFunction.createErrorResponse("error", e);
+        }
+
+    }
+    /**
+     * 插入Department
+     */
+    @PostMapping(value = "/insertDepartment")
+    public ResponseEntity<String> insertDepartment(@RequestBody String data) {
+        try {
+            String resulString = departmentService.insertDepartment(data);
+            return ResponseEntity.ok(resulString);
+        } catch (Exception e) {
+            return MyFunction.createErrorResponse("error", e);
+        }
+
+    }
+
 }

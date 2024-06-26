@@ -1,23 +1,23 @@
 INSERT INTO
-	Admin (username, password, name, email)
+	Admin (username, password, email)
 VALUES
-	('admin', 'password', 'Jack', '1@q.com'),
-	('guest1', 'password', 'Tom', '2@q.com'),
-	('guest2', 'password', 'Jerry', '3@q.com');
+	('a', 'a', '1@q.com'),
+	('admin', 'password', '2@q.com'),
+	('guest1', 'password',  '3@q.com');
 
 INSERT INTO
-	Messages (username, msgName, msgContext)
+	Messages (adminID, msgName, msgContext)
 VALUES
-	('admin', 'msgName', 'Lorem ipsum'),
-	('admin', 'msgName', 'Lorem ipsum'),
-	('admin', 'msgName', 'Lorem ipsum');
+	(1, 'msgName', 'Lorem ipsum'),
+	(1, 'msgName', 'Lorem ipsum'),
+	(1, 'msgName', 'Lorem ipsum');
 
 INSERT INTO
-	Alerts (username, alertName, alertBadge)
+	Alerts (adminID, alertName, alertBadge)
 VALUES
-	('admin', 'alertName', 1),
-	('admin', 'alertName', 2),
-	('admin', 'alertName', 3);
+	(1, 'alertName', 1),
+	(1, 'alertName', 2),
+	(1, 'alertName', 3);
 
 INSERT INTO
 	Department (name, type, TEL,fax,description,superior,foundingTime)
@@ -43,9 +43,11 @@ call AddStaff(3,1,'白居易',1,'研究生','2024-6-19','2024-6-19','176','home'
 call AddStaff(1,1,'韩愈',1,'研究生','2024-6-19','2024-6-19','176','home','正式','正式员工','校园招聘','123456789012345612');
 call AddStaff(1,1,'李清照',1,'研究生','2024-6-19','2024-6-19','176','home','正式','正式员工','校园招聘','123456789012345613');
 
-call AddProbation(1,1,'屈原',1,'研究生','2024-6-19','2024-6-19','176','home','临时员工','校园招聘','123456789012345611','2024-6-19','2024-6-19');
-call AddProbation(1,1,'孔子',1,'研究生','2024-6-19','2024-6-19','176','home','临时员工','校园招聘','123456789012345611','2024-6-19','2024-6-19');
-call AddProbation(1,1,'新增',1,'研究生','2024-6-19','2024-6-19','176','home','临时员工','校园招聘','123456789012345611','2024-6-19','2024-6-19');
+call AddProbation(1,1,'屈原',1,'研究生','2024-4-19','2024-10-19','176','home','临时员工','校园招聘','123456789012345611','2024-3-19','2024-10-19');
+call AddProbation(1,1,'孔子',1,'研究生','2024-3-19','2024-10-19','176','home','临时员工','校园招聘','123456789012345611','2024-4-19','2024-10-19');
+call AddProbation(1,1,'韩非子',1,'研究生','2024-1-19','2024-10-19','176','home','临时员工','校园招聘','123456789012345611','2024-5-19','2024-10-19');
+call AddProbation(1,1,'庄子',1,'研究生','2024-3-19','2024-10-19','176','home','临时员工','校园招聘','123456789012345611','2024-6-19','2024-10-19');
+call AddProbation(1,1,'墨子',1,'研究生','2024-6-19','2024-10-19','176','home','临时员工','校园招聘','123456789012345611','2024-7-19','2024-10-19');
 
 
 # 调部门和岗位

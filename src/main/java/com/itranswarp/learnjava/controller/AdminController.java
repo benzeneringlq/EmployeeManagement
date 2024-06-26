@@ -45,6 +45,16 @@ public class AdminController {
         }
         
     }
+    @PostMapping("/register")
+    public ResponseEntity<String> register(@RequestBody String json) {
+        try {
+            String resuString =adminService.register(json);
+            return ResponseEntity.ok(resuString);
+        } catch (Exception e) {
+            return MyFunction.createErrorResponse("error", e);
+        }
+
+    }
 
 
 

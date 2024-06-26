@@ -6,27 +6,27 @@ USE EmployeeManagement;
 
 CREATE TABLE
 	Admin (
-		username VARCHAR(30) NOT NULL PRIMARY KEY,
+	    adminID int NOT NULL PRIMARY KEY AUTO_INCREMENT,
+		username VARCHAR(30) NOT NULL,
 		password VARCHAR(30) NOT NULL,
-		name VARCHAR(20),
 		email VARCHAR(30)
 	);
 
 CREATE TABLE
 	Messages (
 		id int NOT NULL PRIMARY KEY AUTO_INCREMENT,
-		username VARCHAR(30) NOT NULL,
+        adminID int NOT NULL,
 		msgName VARCHAR(30) NOT NULL,
 		msgDate DATETIME NOT NULL DEFAULT NOW(),
 		msgContext VARCHAR(100) NOT NULL,
-		readed BOOLEAN NOT NULL DEFAULT FALSE,
-		FOREIGN KEY (username) REFERENCES Admin (username)
+		isRead BOOLEAN NOT NULL DEFAULT FALSE,
+		FOREIGN KEY (adminID) REFERENCES Admin (adminID)
 	);
 
 CREATE TABLE
 	Alerts (
 		id int NOT NULL PRIMARY KEY AUTO_INCREMENT,
-		username VARCHAR(30) NOT NULL,
+		adminID int NOT NULL,
 		alertName VARCHAR(30) NOT NULL,
 		alertBadge ENUM (
 			'default',
@@ -36,8 +36,8 @@ CREATE TABLE
 			'warning',
 			'danger'
 		) NOT NULL,
-		viewed BOOLEAN NOT NULL DEFAULT FALSE,
-		FOREIGN KEY (username) REFERENCES Admin (username)
+		isView BOOLEAN NOT NULL DEFAULT FALSE,
+		FOREIGN KEY (adminID) REFERENCES Admin (adminID)
 	);
 
 CREATE TABLE
